@@ -54,11 +54,12 @@ function plugin_readme_to_post( $atts ) {
     $readme_string = ( file_exists( $native_readme ) ) ? file_get_contents( $native_readme ) : null;
 
     extract( shortcode_atts( array(
-        'readme' => $readme_string,
-        'url' => null
+        'url' => $readme_string
         ), $atts )
     );
 
+    $readme_string = $url;
+    
     if ( empty( $readme_string ) ) return;
 
     if ( ! empty( $url ) ){

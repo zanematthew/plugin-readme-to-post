@@ -37,7 +37,7 @@ function prtp_settings(){
     }?>
     <div class="wrap">
         <h2>Plugin Readme to Post Settings</h2>
-        <form action="options-general.php?page=events-venues-settings" method="POST">
+        <form action="options-general.php?page=plugin-readme-to-post-settings" method="POST">
             <table class="form-table">
                 <tbody>
                     <tr valign="top">

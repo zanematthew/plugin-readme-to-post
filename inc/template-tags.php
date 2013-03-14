@@ -50,22 +50,20 @@ function plugin_readme_to_post( $atts ) {
 
     global $post;
 
-    $native_readme = plugin_dir_path( dirname( dirname( __FILE__ ) ) ) . sanitize_title( get_the_title( $post->ID ) ) . '/readme.txt';
-    $readme_string = ( file_exists( $native_readme ) ) ? file_get_contents( $native_readme ) : null;
-
+    if ( empty( $atts['url'] ) ){
+        $native_readme = plugin_dir_path( dirname( dirname( __FILE__ ) ) ) . sanitize_title( get_the_title( $post->ID ) ) . '/readme.txt';
+        $readme_string = ( file_exists( $native_readme ) ) ? file_get_contents( $native_readme ) : null;        
+    } else {
+        $tmp_readme = wp_remote_get( $atts['url'] );
+        $readme_string = $tmp_readme['body'];
+    }
+    
     extract( shortcode_atts( array(
         'url' => $readme_string
         ), $atts )
     );
 
-    $readme_string = $url;
-    
     if ( empty( $readme_string ) ) return;
-
-    if ( ! empty( $url ) ){
-        $tmp_readme = wp_remote_get( $url );
-        $readme_string = $tmp_readme['body'];
-    }
 
     $markdown = Markdown( $readme_string );
     $options = get_option('prtp_settings');

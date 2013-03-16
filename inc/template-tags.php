@@ -104,12 +104,13 @@ function plugin_readme_to_post( $atts ) {
         $tabs = null;
         $content = null;
         $i = 0;
+
         foreach( $readme_sections as $section ){
             $clean_name = str_replace( ' ', '-', strtolower( $section['name'] ) );
             $tabs .= '<li><a href="#' . $clean_name . '" data-toggle="tab">' . $section['name'] . '</a></li>';
             $content .= '<div id="' . $clean_name . '" class="tab-pane">' . $section['content'];
             if ( $section['name'] == 'Screenshots' ){
-                foreach( $screenshots as $screenshot ){
+                while ( $i <= count( $screenshots ) - 1 ) {
                     $i++;
                     $content .= '<img src="' . $image_url . '/screenshot-' . $i . '.png" />';
                 }

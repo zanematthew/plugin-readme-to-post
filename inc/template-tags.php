@@ -112,7 +112,6 @@ function plugin_readme_to_post( $atts ) {
             if ( $section['name'] == 'Screenshots' ){
                 while ( $i <= count( $screenshots ) - 1 ) {
                     $i++;
-                    print $i;
                     $content .= '<img src="' . $image_url . '/screenshot-' . $i . '.png" />';
                 }
             }

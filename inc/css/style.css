@@ -26,8 +26,14 @@
 .entry-content .prtp-container h3,
 .entry-content .prtp-container h4,
 .entry-content .prtp-container h5,
-.entry-content .prtp-container h6 {
-    margin: 0;
+.entry-content .prtp-container h6,
+.hentry .prtp-container h1,
+.hentry .prtp-container h2,
+.hentry .prtp-container h3,
+.hentry .prtp-container h4,
+.hentry .prtp-container h5,
+.hentry .prtp-container h6 {
+    margin: 0 0 5px;
     }
 
 .prtp-container .ui-tabs .ui-tabs-panel {

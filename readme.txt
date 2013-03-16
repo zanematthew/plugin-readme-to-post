@@ -14,7 +14,9 @@ Automattically imports your Plugin readme.txt into a Post or Page in a tabbed fo
 
 If your WordPress Plugin is on the same install as the Plugin Readme to Post Plugin the readme content will be derived for you, i.e., Post title "my awesome plugin", plugin name "my awesome plugin". If not you can assign the URL to the readme.txt file.
 
-*Note -- Uses the Markdown port by [Michel Fortin](http://michelf.ca/projects/php-markdown/) to parse the `readme.txt` file.*
+*Note, displaying of screenshots is only supported if they are on the same domain as your plugins*
+
+*Thanks too [Michel Fortin](http://michelf.ca/projects/php-markdown/) for porting Markdown to PHP.*
 
 == Installation ==
 1. Install the plugin via WordPress admin or download and upload the plugin to `wp-content/plugins/`

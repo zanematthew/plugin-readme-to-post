@@ -107,6 +107,6 @@ function plugin_readme_to_post( $atts ) {
         $html = $markdown;
     }
 
-    return $html;
+    return '<div class="prtp-container">'.$html.'</div>';
 }
 add_shortcode('parse_readme', 'plugin_readme_to_post');

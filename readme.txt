@@ -32,7 +32,10 @@ Yes, just use the following:
 From your WordPress admin click on "Settings --> Plugin Readme to Post", uncheck "Use jQuery UI Tabs". *Note all sections of the readme.txt will be displayed!*
 
 == Screenshots ==
-1. Coming
+1. Description section
+1. Admin settings
+1. FAQ section
+1. Screenshot section
 
 == Changelog ==
 = 0.1-alpha =

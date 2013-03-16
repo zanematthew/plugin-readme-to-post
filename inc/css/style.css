@@ -8,6 +8,7 @@
     clear: both;
     }
 
+.prtp-container .ui-tabs .ui-tabs-nav li,
 .prtp-container .ui-tabs .ui-tabs-nav li a {
     outline: none;
 }
@@ -52,6 +53,6 @@
     }
 
 .prtp-container .ui-tabs .ui-tabs-nav li a {
-    margin: 10px 10px 0;
-    padding: 10px 13px 10px;
+    margin: 7px 10px 0;
+    padding: 7px 13px 10px;
     }

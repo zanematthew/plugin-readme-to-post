@@ -86,14 +86,20 @@ function plugin_readme_to_post( $atts ) {
                 'content' => prtp_get_string_between( $markdown, '<h2>Frequently Asked Questions</h2>', '<h2>Screenshots</h2>' )
                 ),
             array(
-                'name' => 'Screenshots',
-                'content' => prtp_get_string_between( $markdown, '<h2>Screenshots</h2>', '<h2>Changelog</h2>' )
-                ),
-            array(
                 'name' => 'Changelog',
                 'content' => $changelog
                 )
             );
+
+        $image_url = plugin_dir_url( dirname( dirname( __FILE__ ) ) ) . sanitize_title( get_the_title( $post->ID ) );
+        $screenshots = glob( plugin_dir_path( dirname( __FILE__ ) ) . "screenshot-*.png", GLOB_BRACE );
+
+        if ( ! empty( $screenshots ) ){
+            $readme_sections[] = array(
+                'name' => 'Screenshots',
+                'content' => prtp_get_string_between( $markdown, '<h2>Screenshots</h2>', '<h2>Changelog</h2>' )
+            );
+        }
 
         $tabs = null;
         $content = null;
@@ -103,8 +109,6 @@ function plugin_readme_to_post( $atts ) {
             $tabs .= '<li><a href="#' . $clean_name . '" data-toggle="tab">' . $section['name'] . '</a></li>';
             $content .= '<div id="' . $clean_name . '" class="tab-pane">' . $section['content'];
             if ( $section['name'] == 'Screenshots' ){
-                $image_url = plugin_dir_url( dirname( dirname( __FILE__ ) ) ) . sanitize_title( get_the_title( $post->ID ) );
-                $screenshots = glob( plugin_dir_path( dirname( __FILE__ ) ) . "screenshot-*.png", GLOB_BRACE );
                 foreach( $screenshots as $screenshot ){
                     $i++;
                     $content .= '<img src="' . $image_url . '/screenshot-' . $i . '.png" />';

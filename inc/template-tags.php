@@ -92,7 +92,7 @@ function plugin_readme_to_post( $atts ) {
             );
 
         $image_url = plugin_dir_url( dirname( dirname( __FILE__ ) ) ) . sanitize_title( get_the_title( $post->ID ) );
-        $screenshots = glob( plugin_dir_path( dirname( __FILE__ ) ) . "screenshot-*.png", GLOB_BRACE );
+        $screenshots = glob( plugin_dir_path( dirname( dirname( __FILE__ ) ) ) . sanitize_title( get_the_title( $post->ID ) ) . "/screenshot-*.png", GLOB_BRACE );
 
         if ( ! empty( $screenshots ) ){
             $readme_sections[] = array(
@@ -112,6 +112,7 @@ function plugin_readme_to_post( $atts ) {
             if ( $section['name'] == 'Screenshots' ){
                 while ( $i <= count( $screenshots ) - 1 ) {
                     $i++;
+                    print $i;
                     $content .= '<img src="' . $image_url . '/screenshot-' . $i . '.png" />';
                 }
             }

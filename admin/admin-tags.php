@@ -22,18 +22,18 @@ add_action('admin_menu','prtp_admin_menu');
 function prtp_settings(){
     $options = get_option('prtp_settings');
 
+    if ( empty( $options['tabs'] ) ){
+        $tabs = 0;
+    } else {
+        $tabs = 1;
+    }
+
     if ( ! empty( $_POST['prtp_settings']['save'] ) ){
         if ( ! empty( $_POST['prtp_settings']['tabs'] ) )
             $tabs = $_POST['prtp_settings']['tabs'];
         else
             $tabs = 0;
         update_option( 'prtp_settings', $_POST['prtp_settings'] );
-    }
-
-    if ( empty( $options['tabs'] ) ){
-        $tabs = 0;
-    } else {
-        $tabs = 1;
     }?>
     <div class="wrap">
         <h2>Plugin Readme to Post Settings</h2>

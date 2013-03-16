@@ -52,12 +52,12 @@ function plugin_readme_to_post( $atts ) {
 
     if ( empty( $atts['url'] ) ){
         $native_readme = plugin_dir_path( dirname( dirname( __FILE__ ) ) ) . sanitize_title( get_the_title( $post->ID ) ) . '/readme.txt';
-        $readme_string = ( file_exists( $native_readme ) ) ? file_get_contents( $native_readme ) : null;        
+        $readme_string = ( file_exists( $native_readme ) ) ? file_get_contents( $native_readme ) : null;
     } else {
         $tmp_readme = wp_remote_get( $atts['url'] );
         $readme_string = $tmp_readme['body'];
     }
-    
+
     extract( shortcode_atts( array(
         'url' => $readme_string
         ), $atts )
@@ -101,7 +101,7 @@ function plugin_readme_to_post( $atts ) {
             $content .= '<div id="' . $clean_name . '" class="tab-pane">' . $section['content'] . '</div>';
         }
 
-        $html = '<div id="prtp-tabs"><ul>' . $tabs . '</ul><div>'.$content.'</div></div>';
+        $html = '<div class="prtp-tabs"><ul>' . $tabs . '</ul><div>'.$content.'</div></div>';
     } else {
         $html = $markdown;
     }

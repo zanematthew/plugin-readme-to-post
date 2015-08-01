@@ -18,3 +18,10 @@ function prtp_get_string_between( $text, $s1, $s2 ){
     }
     return $mid_url;
 }
+
+
+function prtp_get_images( $slug=null ){
+
+    echo plugins_url() . $slug . '_assets/screenshot-1.png';
+
+}

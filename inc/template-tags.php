@@ -50,21 +50,23 @@ function plugin_readme_to_post( $atts ) {
 
     global $post;
 
+
+    extract( shortcode_atts( array(
+        'url' => null,
+        'slug' => sanitize_title( get_the_title( $post->ID ) )
+        ), $atts )
+    );
+
     if ( empty( $atts['url'] ) ){
-        $plugin_slug = sanitize_title( get_the_title( $post->ID ) );
-        $native_readme = plugin_dir_path( dirname( dirname( __FILE__ ) ) ) . $plugin_slug . '/readme.txt';
+
+        $native_readme = plugin_dir_path( dirname( dirname( __FILE__ ) ) ) . $slug . '/readme.txt';
         $readme_string = ( file_exists( $native_readme ) ) ? file_get_contents( $native_readme ) : null;
+
     } else {
 
         $tmp_readme = wp_remote_get( $atts['url'] );
-        $plugin_slug = basename( str_replace( 'readme.txt', '', $atts['url'] ) );
         $readme_string = $tmp_readme['body'];
     }
-
-    extract( shortcode_atts( array(
-        'url' => $readme_string
-        ), $atts )
-    );
 
     if ( empty( $readme_string ) ) return;
 
@@ -72,7 +74,6 @@ function plugin_readme_to_post( $atts ) {
     $options = get_option('prtp_settings');
 
     $image_captions = explode( PHP_EOL, trim( prtp_get_string_between( $readme_string, '== Screenshots ==', '== Changelog ==' ) ) );
-    // echo '<pre>';
 
     $images_with_captions = array();
     $tmp = array();
@@ -80,8 +81,8 @@ function plugin_readme_to_post( $atts ) {
 
     foreach( $image_captions as $caption ){
         $tmp = array(
-            'id' => $plugin_slug . '_screenshot-' . $i . '.png',
-            'url' => plugin_dir_url( ( dirname( dirname( __FILE__ ) ) ) ) . $plugin_slug . '/_assets/screenshot-' . $i . '.png',
+            'id' => $slug . '_screenshot-' . $i . '.png',
+            'url' => plugin_dir_url( ( dirname( dirname( __FILE__ ) ) ) ) . $slug . '/_assets/screenshot-' . $i . '.png',
             'width' => '',
             'height' => '',
             'caption' => $caption,
